@@ -1,4 +1,10 @@
+/* Components */
+import { Providers } from "@/lib/providers";
+
+/* Instruments */
 import "./styles/globals.css";
+import { Footer } from "./_components";
+import ToasterProvider from "@/lib/providers/ToastProviders";
 import { Poppins } from "next/font/google";
 
 export const metadata = {
@@ -14,7 +20,13 @@ export default function RootLayout(props: React.PropsWithChildren) {
         <link rel="icon" href="/award_logo.png" sizes="any" as="style" />
       </head>
       <body className={font.className}>
-        <main>{props.children}</main>
+        <Providers>
+          <ToasterProvider />
+
+          <main>{props.children}</main>
+
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
