@@ -1,4 +1,4 @@
-import { Header } from "@/app/components";
+import { Header } from "@/app/_components";
 
 export default async function Layout({
   children,

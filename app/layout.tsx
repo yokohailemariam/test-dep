@@ -3,7 +3,7 @@ import { Providers } from "@/lib/providers";
 
 /* Instruments */
 import "./styles/globals.css";
-import { Footer } from "./components";
+import { Footer } from "./_components";
 import ToasterProvider from "@/lib/providers/ToastProviders";
 import { Poppins } from "next/font/google";
 

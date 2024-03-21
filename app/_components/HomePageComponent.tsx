@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AwardLogo, LezaLogo } from "@/lib/utils/assets";
-import ImageSlide from "../components/anim";
+import ImageSlide from "./anim";
 import Link from "next/link";
 import { Cinzel_Decorative } from "next/font/google";
 import { TypeAnimation } from "react-type-animation";

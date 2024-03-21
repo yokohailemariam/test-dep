@@ -1,79 +1,31 @@
-"use client";
+import { Cinzel_Decorative } from "next/font/google";
+import React from "react";
 
-import { lazy, useEffect, useState } from "react";
-import { AllCategoriesHeader } from "./components";
-import { getVotersIpAddress } from "@/lib/redux/slices/indentitySlice/indentityThunk";
-import { setFingerprintVote } from "@/lib/redux/slices/indentitySlice/identitySlice";
-import dynamic from "next/dynamic";
-import { useDispatch } from "@/lib/redux";
-const Sponsors = lazy(() => import("./components/Sponsors"));
-const HomePageComponent = lazy(() => import("./components/HomePageComponent"));
-const Modal = lazy(() => import("./components/Modal"));
-const ParagraphModal = lazy(() => import("./components/ParagraphModal"));
-const CategoriesListView = lazy(
-  () => import("./components/CategoriesListView")
-);
-
-const ClientJs = dynamic(() => import("@/lib/utils/ClientFingerPrint"), {
-  ssr: false,
+const cinzel = Cinzel_Decorative({
+  subsets: ["latin"],
+  weight: "400",
 });
 
-const HomePage: React.FC = () => {
-  const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
-
-  const [fingerPrint, setFingerPrint] = useState(0);
-
-  useEffect(() => {
-    dispatch(getVotersIpAddress());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (fingerPrint) {
-      dispatch(setFingerprintVote(JSON.stringify(fingerPrint)));
-    }
-  }, [dispatch]);
-
+const page = () => {
   return (
-    <>
-      <ClientJs setFingerprint={setFingerPrint} />
-
-      <HomePageComponent />
-
-      <Sponsors />
-
-      <div className="flex justify-center text-center gap-16 pt-2 text-black text-[2vh] md:text-[3vh]">
-        <p>ሐምሌ 1 2013 - ሰኔ 30 2015</p>
-      </div>
-
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        homePageModal={true}
+    <div className="h-screen flex flex-col items-center justify-center ">
+      <p
+        className={`${cinzel.className} text-center mt-6 text-[12vw] md:text-[5vw] font font-bold text-blue-600`}
       >
-        <ParagraphModal />
-      </Modal>
-
-      <p className=" justify-center text-center gap-16 pt-2 text-black text-[2vh] md:text-[2vh] md:px-56">
-        <strong>፲፫ ተኛው</strong> አብረን ተጉዘናል ሁሉም ጥሩ ይሆናል ! ከ16 ዓመት በፊት ሸገር ራዲዮ ጣቢያ
-        መደበኛ ስርጭቱን ሲጀምር የተከፈተ ዘፈን ነበር። ያኔ ዕወቁ የሙዚቃ ሠው ደረጃ መኰንን ፀደኒያ ገ/ማርቆስንና
-        ሌቨንን አሳትፎ የሠራው ይሄንን ሙዚቃ ለዛሬው የላዛ ፕሮግራም አዘጋጅ ከሌሎች አራትና አምስት ሙዚቃዎች ጋር አዳብሎ
-        ሠጥቶት ነበርና ነው ይሄ ዘፈን ለመክፈቻነት የዋለው .: በስተኋላ ሚካኤል በላይነህ ...{" "}
-        <span
-          className="text-[#00094B] underline hover:cursor-pointer"
-          onClick={() => {
-            setShowModal(true);
-          }}
-        >
-          Read more
-        </span>
+        Leza Award
       </p>
-
-      <AllCategoriesHeader />
-
-      <CategoriesListView />
-    </>
+      <p
+        className={`${cinzel.className} text-center mt-6 text-[8vw] md:text-[3vw] font text-primary`}
+      >
+        Second round
+      </p>
+      <p
+        className={`${cinzel.className} text-center mt-6 text-[8vw] md:text-[3vw] font text-primary`}
+      >
+        Coming Soon
+      </p>
+    </div>
   );
 };
 
-export default HomePage;
+export default page;
